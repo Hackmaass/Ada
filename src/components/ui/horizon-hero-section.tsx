@@ -12,12 +12,12 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 gsap.registerPlugin(ScrollTrigger);
 
 export const Component = () => {
-  const containerRef = useRef(null);
-  const canvasRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const scrollProgressRef = useRef(null);
-  const menuRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef = useRef<HTMLDivElement | null>(null);
+  const scrollProgressRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const smoothCameraPos = useRef({ x: 0, y: 30, z: 100 });
   const cameraVelocity = useRef({ x: 0, y: 0, z: 0 });
@@ -27,7 +27,7 @@ export const Component = () => {
   const [isReady, setIsReady] = useState(false);
   const totalSections = 2;
   
-  const threeRefs = useRef({
+  const threeRefs = useRef<any>({
     scene: null,
     camera: null,
     renderer: null,
@@ -42,7 +42,7 @@ export const Component = () => {
   useEffect(() => {
     const initThree = () => {
       const { current: refs } = threeRefs;
-      if (refs.renderer) return; // Prevent double init in strict mode
+      if (refs.renderer || !canvasRef.current) return; // Prevent double init in strict mode
       
       // Scene setup
       refs.scene = new THREE.Scene();
@@ -336,7 +336,7 @@ export const Component = () => {
       const time = Date.now() * 0.001;
 
       // Update stars
-      refs.stars.forEach((starField, i) => {
+      refs.stars.forEach((starField: any, i: number) => {
         if (starField.material.uniforms) {
           starField.material.uniforms.time.value = time;
         }
@@ -368,7 +368,7 @@ export const Component = () => {
       }
 
       // Parallax mountains with subtle animation
-      refs.mountains.forEach((mountain, i) => {
+      refs.mountains.forEach((mountain: any, i: number) => {
         const parallaxFactor = 1 + i * 0.5;
         mountain.position.x = Math.sin(time * 0.1) * 2 * parallaxFactor;
         mountain.position.y = 50 + (Math.cos(time * 0.15) * 1 * parallaxFactor);
@@ -405,12 +405,12 @@ export const Component = () => {
       window.removeEventListener('resize', handleResize);
 
       // Dispose Three.js resources
-      refs.stars.forEach(starField => {
+      refs.stars.forEach((starField: any) => {
         starField.geometry.dispose();
         starField.material.dispose();
       });
 
-      refs.mountains.forEach(mountain => {
+      refs.mountains.forEach((mountain: any) => {
         mountain.geometry.dispose();
         mountain.material.dispose();
       });
@@ -430,12 +430,12 @@ export const Component = () => {
 
   const getLocation = () => {
     const { current: refs } = threeRefs;
-    const locations = [];
-    refs.mountains.forEach( (mountain, i) => {
-      locations[i] = mountain.position.z
-    })
-    refs.locations = locations
-  }
+    const locations: number[] = [];
+    refs.mountains.forEach((mountain: any, i: number) => {
+      locations[i] = mountain.position.z;
+    });
+    refs.locations = locations;
+  };
 
   // GSAP Animations - Run after component is ready
   useEffect(() => {
@@ -532,7 +532,7 @@ export const Component = () => {
       refs.targetCameraY = currentPos.y + (nextPos.y - currentPos.y) * sectionProgress;
       refs.targetCameraZ = currentPos.z + (nextPos.z - currentPos.z) * sectionProgress;
       // Smooth parallax for mountains
-      refs.mountains.forEach((mountain, i) => {
+      refs.mountains.forEach((mountain: any, i: number) => {
         const speed = 1 + i * 0.9;
         const targetZ = mountain.userData.baseZ + scrollY * speed * 0.5;
         if(refs.nebula) refs.nebula.position.z = (targetZ + progress * speed * 0.01) - 100
@@ -557,8 +557,8 @@ export const Component = () => {
   }, [totalSections]);
 
 
-  const splitTitle = (text) => {
-    return text.split('').map((char, i) => (
+  const splitTitle = (text: string) => {
+    return text.split('').map((char: string, i: number) => (
       <span key={i} className="title-char" style={{display: 'inline-block'}}>
         {char === ' ' ? '\u00A0' : char}
       </span>
@@ -612,13 +612,13 @@ export const Component = () => {
       {/* Additional sections for scrolling */}
       <div className="scroll-sections">
        {[...Array(2)].map((_, i) => {
-          const titles = {
+          const titles: Record<number, string> = {
             0: 'ADA',
             1: 'EVIDENCE',
             2: 'INTELLIGENCE'
           };
           
-          const subtitles = {
+          const subtitles: Record<number, { line1: string; line2: string }> = {
             0: {
               line1: 'Adaptive Decision Assistant,',
               line2: 'the intelligence layer powering TalentGraph AI.'
