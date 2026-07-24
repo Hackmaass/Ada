@@ -65,7 +65,7 @@ export const Component = () => {
         alpha: true
       });
       refs.renderer.setSize(window.innerWidth, window.innerHeight);
-      refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       refs.renderer.toneMapping = THREE.ACESFilmicToneMapping;
       refs.renderer.toneMappingExposure = 0.5;
 
@@ -75,7 +75,7 @@ export const Component = () => {
       refs.composer.addPass(renderPass);
 
       const bloomPass = new UnrealBloomPass(
-        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2),
         0.8,
         0.4,
         0.85
@@ -98,7 +98,7 @@ export const Component = () => {
 
     const createStarField = () => {
       const { current: refs } = threeRefs;
-      const starCount = 5000;
+      const starCount = 1500;
       
       for (let i = 0; i < 3; i++) {
         const geometry = new THREE.BufferGeometry();
@@ -188,7 +188,7 @@ export const Component = () => {
     const createNebula = () => {
       const { current: refs } = threeRefs;
       
-      const geometry = new THREE.PlaneGeometry(8000, 4000, 100, 100);
+      const geometry = new THREE.PlaneGeometry(8000, 4000, 32, 32);
       const material = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0 },
@@ -534,20 +534,22 @@ export const Component = () => {
       // Smooth parallax for mountains
       refs.mountains.forEach((mountain: any, i: number) => {
         const speed = 1 + i * 0.9;
+        // Apply smooth target Z
         const targetZ = mountain.userData.baseZ + scrollY * speed * 0.5;
-        if(refs.nebula) refs.nebula.position.z = (targetZ + progress * speed * 0.01) - 100
-        
-        // Use the same smoothing approach
-        mountain.userData.targetZ = targetZ;
-        const location = mountain.position.z
-        if (progress > 0.7) {
-          mountain.position.z = 600000;
-        }
-        if (progress < 0.7 && refs.locations) {
-          mountain.position.z = refs.locations[i]
+        mountain.position.z = targetZ;
+
+        // Smoothly fade out mountains as you scroll instead of abruptly snapping them away
+        if (mountain.material) {
+          const originalOpacity = [1, 0.8, 0.6, 0.4][i] || 0.5;
+          const opacityProgress = Math.max(0, 1 - (progress / 0.7));
+          mountain.material.opacity = originalOpacity * opacityProgress;
         }
       });
-      if(refs.nebula && refs.mountains.length > 3) refs.nebula.position.z = refs.mountains[3].position.z
+      
+      // Position nebula gently behind the mountains to prevent z-fighting
+      if(refs.nebula && refs.mountains.length > 3) {
+        refs.nebula.position.z = refs.mountains[3].position.z - 200;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);

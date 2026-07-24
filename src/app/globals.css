@@ -264,3 +264,51 @@
   font-size: 0.8rem;
   letter-spacing: 0.1rem;
 }
+
+.bg-pattern-policy {
+  --s: 80px;
+  --c1: #ef4444;
+  --c2: #ffffff;
+  --_g: var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%,
+    var(--c1) 34% 44%, var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%,
+    var(--c1) 76% 86%, var(--c2) 86% 96%;
+  background: radial-gradient(
+      100% 100% at 100% 0,
+      var(--c1) 4%,
+      var(--_g),
+      #0008 96%,
+      #0000
+    ),
+    radial-gradient(
+        100% 100% at 0 100%,
+        #0000,
+        #0008 4%,
+        var(--_g),
+        var(--c1) 96%
+      )
+      var(--c1);
+  background-size: var(--s) var(--s);
+  transition: all 0.3s ease;
+}
+
+.bg-pattern-guide {
+  background-color: #ef4444;
+  background-image: linear-gradient(45deg, #ffffff 25%, transparent 25%),
+    linear-gradient(
+      -135deg,
+      #ffffff 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffffff 75%,
+      #ffffff
+    );
+  background-size: 50px 50px;
+  transition: all 0.3s ease;
+}
+
+.resources-menu:has(.link-guide:hover) .resources-card {
+  background-color: #ef4444;
+  background-image: linear-gradient(45deg, #ffffff 25%, transparent 25%),
+    linear-gradient(-135deg, #ffffff 25%, transparent 25%, transparent 75%, #ffffff 75%, #ffffff);
+  background-size: 50px 50px;
+}

@@ -58,11 +58,11 @@ export function Navbar() {
                 <ChevronDown className="w-3.5 h-3.5 relative z-10 transition-transform duration-200 group-hover:rotate-180" />
               </button>
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
-                <div className="relative w-[520px] bg-[#161616] border border-white/[0.08] rounded-3xl p-3 shadow-2xl flex gap-3">
+                <div className="relative w-[520px] bg-[#161616] border border-white/[0.08] rounded-3xl p-3 shadow-2xl flex gap-3 resources-menu">
                   <div className="flex-1 flex flex-col gap-1">
                     <Link
                       href="#policy"
-                      className="group/link flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                      className="group/link link-policy flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
                     >
                       <div>
                         <h4 className="text-white font-semibold text-sm mb-1">Policy</h4>
@@ -72,7 +72,7 @@ export function Navbar() {
                     </Link>
                     <Link
                       href="#guide"
-                      className="group/link flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                      className="group/link link-guide flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
                     >
                       <div>
                         <h4 className="text-white font-semibold text-sm mb-1">Guide</h4>
@@ -82,7 +82,7 @@ export function Navbar() {
                     </Link>
                     <Link
                       href="#documentation"
-                      className="group/link flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                      className="group/link link-documentation flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
                     >
                       <div>
                         <h4 className="text-white font-semibold text-sm mb-1">Documentation</h4>
@@ -92,10 +92,8 @@ export function Navbar() {
                     </Link>
                   </div>
                   
-                  {/* Decorative Yellow Card matching the image */}
-                  <div className="w-[200px] shrink-0 rounded-2xl bg-gradient-to-br from-[#ffd246] to-[#eb7e21] overflow-hidden relative">
-                    <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full border-[24px] border-[#e78e22]/60" />
-                    <div className="absolute top-0 bottom-0 left-8 w-12 bg-white/10" />
+                  {/* Decorative Card */}
+                  <div className="w-[200px] shrink-0 rounded-2xl overflow-hidden relative bg-pattern-policy resources-card">
                   </div>
                 </div>
               </div>
@@ -105,11 +103,11 @@ export function Navbar() {
 
         {/* Action Button */}
         <Link
-          href="#launch"
+          href="#login"
           className="hidden md:block px-5 py-2 text-gray-900 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity"
           style={{ backgroundColor: "#e2a9f1" }}
         >
-          Launch App
+          Login
         </Link>
 
         {/* Mobile Menu */}
