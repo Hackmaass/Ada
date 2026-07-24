@@ -1,0 +1,122 @@
+import Link from "next/link";
+import { ChevronDown, Menu, ArrowUpRight } from "lucide-react";
+
+export function Navbar() {
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Logo Section */}
+        <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl font-bold text-red-500 tracking-tight uppercase">
+              ADA
+            </span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex flex-col items-center relative">
+          <div className="flex items-center gap-0.5">
+            <Link
+              href="/"
+              className="px-4 py-2 text-sm font-medium text-gray-200 hover:text-white rounded-full transition-colors duration-150"
+            >
+              Home
+            </Link>
+            {/* Products Dropdown */}
+            <div className="relative group">
+              <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full transition-colors duration-150 text-gray-200 hover:text-white">
+                <span className="relative z-10">Products</span>
+                <ChevronDown className="w-3.5 h-3.5 relative z-10 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
+                <div className="relative w-[480px] bg-[#161616] border border-white/[0.08] rounded-3xl p-3 shadow-2xl flex gap-3">
+                  <div className="flex-1 flex flex-col gap-1">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <Link
+                        key={num}
+                        href={`#product-${num}`}
+                        className="group/link flex items-center justify-between px-4 py-3 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                      >
+                        <span className="text-white font-semibold text-sm">Product {num}</span>
+                        <ArrowUpRight className="w-4 h-4 text-gray-600 group-hover/link:text-gray-300 transition-colors" />
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="w-[180px] shrink-0 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 overflow-hidden relative flex items-center justify-center">
+                    <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full border-[12px] border-white/20" />
+                    <span className="relative z-10 font-bold text-white/80 text-lg tracking-tight">PRODUCTS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Resources Dropdown */}
+            <div className="relative group">
+              <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full transition-colors duration-150 text-gray-200 hover:text-white">
+                <span className="relative z-10">Resources</span>
+                <ChevronDown className="w-3.5 h-3.5 relative z-10 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
+                <div className="relative w-[520px] bg-[#161616] border border-white/[0.08] rounded-3xl p-3 shadow-2xl flex gap-3">
+                  <div className="flex-1 flex flex-col gap-1">
+                    <Link
+                      href="#policy"
+                      className="group/link flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                    >
+                      <div>
+                        <h4 className="text-white font-semibold text-sm mb-1">Policy</h4>
+                        <p className="text-gray-400 text-xs leading-relaxed pr-2">Platform rules, compliance, and terms of service.</p>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-gray-600 group-hover/link:text-gray-400 transition-colors mt-0.5 shrink-0" />
+                    </Link>
+                    <Link
+                      href="#guide"
+                      className="group/link flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                    >
+                      <div>
+                        <h4 className="text-white font-semibold text-sm mb-1">Guide</h4>
+                        <p className="text-gray-400 text-xs leading-relaxed pr-2">Step-by-step tutorials and best practices.</p>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-gray-600 group-hover/link:text-gray-400 transition-colors mt-0.5 shrink-0" />
+                    </Link>
+                    <Link
+                      href="#documentation"
+                      className="group/link flex items-start justify-between p-4 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                    >
+                      <div>
+                        <h4 className="text-white font-semibold text-sm mb-1">Documentation</h4>
+                        <p className="text-gray-400 text-xs leading-relaxed pr-2">Technical architecture and integration details.</p>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-gray-600 group-hover/link:text-gray-400 transition-colors mt-0.5 shrink-0" />
+                    </Link>
+                  </div>
+                  
+                  {/* Decorative Yellow Card matching the image */}
+                  <div className="w-[200px] shrink-0 rounded-2xl bg-gradient-to-br from-[#ffd246] to-[#eb7e21] overflow-hidden relative">
+                    <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full border-[24px] border-[#e78e22]/60" />
+                    <div className="absolute top-0 bottom-0 left-8 w-12 bg-white/10" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Button */}
+        <Link
+          href="#launch"
+          className="hidden md:block px-5 py-2 text-gray-900 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity"
+          style={{ backgroundColor: "#e2a9f1" }}
+        >
+          Launch App
+        </Link>
+
+        {/* Mobile Menu */}
+        <button className="md:hidden p-2 text-gray-400 hover:text-white transition-colors">
+          <Menu className="w-5 h-5" />
+        </button>
+      </div>
+    </nav>
+  );
+}
