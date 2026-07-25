@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ShapeGrid from './ShapeGrid';
+import Galaxy from './Galaxy';
 
 export const BrandEndingSection = () => {
   return (
@@ -10,6 +11,24 @@ export const BrandEndingSection = () => {
       {/* Subtle background gradient to match the theme without introducing new colors */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#5B73AE]/5 rounded-full blur-[120px]" />
+      </div>
+
+      {/* Galaxy Background for visual continuity from Section 4 */}
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        <Galaxy
+          className="w-full h-full"
+          starSpeed={0.3}
+          density={1.5}
+          hueShift={0}
+          speed={0}
+          glowIntensity={0.15}
+          saturation={0}
+          mouseRepulsion={false}
+          repulsionStrength={0}
+          twinkleIntensity={0.1}
+          rotationSpeed={0}
+          transparent
+        />
       </div>
 
       {/* ShapeGrid Background — animated diagonal grid, blends behind content */}
@@ -24,6 +43,10 @@ export const BrandEndingSection = () => {
           hoverTrailAmount={0}
         />
       </div>
+
+      {/* Top & Bottom dark fades for canvas content blending */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-[2]" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-[2]" />
 
       <motion.div 
         initial={{ opacity: 0, y: 30 }}

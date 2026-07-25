@@ -77,6 +77,13 @@ export const GalaxyCardsSection = () => {
         />
       </div>
 
+      {/* Top transition light bleed from red Hero section */}
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-[#ff4444]/6 to-transparent pointer-events-none z-10" />
+
+      {/* Top & Bottom dark fades for canvas content blending */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-10" />
+
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-28 md:py-40">
         {/* Section Header — DO NOT MODIFY */}

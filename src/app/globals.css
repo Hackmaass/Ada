@@ -495,8 +495,8 @@
    Ada Footer Section
    ═══════════════════════════════════════════════════════════════ */
 .ada-footer {
-  background: #0B0B0F;
-  border-top: 1px solid rgba(91, 115, 174, 0.25);
+  background: #000000;
+  border-top: 1px solid rgba(91, 115, 174, 0.12);
   padding: 80px 24px 40px 24px;
   position: relative;
   overflow: hidden;
