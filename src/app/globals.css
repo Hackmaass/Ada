@@ -284,23 +284,23 @@
    Galaxy Cards Section — Premium Feature Grid
    ═══════════════════════════════════════════════════════════════ */
 
-/* Responsive Grid */
+/* Responsive Grid — Mobile first */
 .galaxy-cards-grid {
   display: grid !important;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 20px;
 }
 
 @media (min-width: 768px) {
   .galaxy-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
   }
 }
 
 @media (min-width: 1024px) {
   .galaxy-cards-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
   }
 }
@@ -308,7 +308,8 @@
 /* Card Wrapper — ensures ElectricBorder fills the grid cell */
 .galaxy-feature-card {
   position: relative;
-  min-height: 240px;
+  min-height: 320px;
+  cursor: pointer;
 }
 
 /* Force ElectricBorder to fill its parent */
@@ -330,61 +331,58 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 32px 28px;
+  padding: 32px;
   box-sizing: border-box;
-  background: rgba(11, 15, 25, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(8, 10, 18, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* Card Hover */
 .galaxy-feature-card:hover .galaxy-card-inner {
-  background: rgba(11, 15, 25, 0.95);
-  border-color: rgba(91, 115, 174, 0.2);
-  transform: translateY(-6px);
+  background: rgba(10, 13, 24, 0.96);
+  border-color: rgba(91, 115, 174, 0.22);
+  transform: translateY(-8px);
   box-shadow:
-    0 24px 48px -12px rgba(0, 0, 0, 0.6),
-    0 0 40px -8px rgba(91, 115, 174, 0.12);
+    0 30px 60px -16px rgba(0, 0, 0, 0.7),
+    0 0 50px -10px rgba(91, 115, 174, 0.14);
 }
 
 /* Icon Container */
 .galaxy-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(91, 115, 174, 0.08);
-  border: 1px solid rgba(91, 115, 174, 0.12);
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: rgba(91, 115, 174, 0.09);
+  border: 1px solid rgba(91, 115, 174, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-bottom: 22px;
+  flex-shrink: 0;
+  transition: all 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .galaxy-feature-card:hover .galaxy-card-icon {
-  background: rgba(91, 115, 174, 0.14);
-  border-color: rgba(91, 115, 174, 0.25);
-  transform: rotate(6deg) scale(1.08);
-  box-shadow: 0 0 20px -4px rgba(91, 115, 174, 0.2);
+  background: rgba(91, 115, 174, 0.16);
+  border-color: rgba(91, 115, 174, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 24px -4px rgba(91, 115, 174, 0.25);
 }
 
 /* Card Title */
 .galaxy-card-title {
   font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
   letter-spacing: -0.01em;
   line-height: 1.35;
-  margin: 0 0 10px 0;
-  transition: color 0.3s ease;
-}
-
-.galaxy-feature-card:hover .galaxy-card-title {
-  color: #ffffff;
+  margin: 0 0 12px 0;
+  transition: color 300ms ease;
 }
 
 /* Card Description */
@@ -392,34 +390,65 @@
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.38);
-  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.75;
+  letter-spacing: 0.006em;
   margin: 0;
-  transition: color 0.3s ease;
+  flex: 1;
+  transition: color 300ms ease;
 }
 
 .galaxy-feature-card:hover .galaxy-card-desc {
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Badge */
+.galaxy-card-badge {
+  margin-top: 24px;
+  align-self: flex-start;
+}
+
+.galaxy-card-badge span {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(91, 115, 174, 0.9);
+  background: rgba(91, 115, 174, 0.08);
+  border: 1px solid rgba(91, 115, 174, 0.18);
+  transition: all 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.galaxy-feature-card:hover .galaxy-card-badge span {
+  color: #8ba0cc;
+  background: rgba(91, 115, 174, 0.14);
+  border-color: rgba(91, 115, 174, 0.32);
+  box-shadow: 0 0 16px -4px rgba(91, 115, 174, 0.2);
 }
 
 /* ElectricBorder glow transitions on hover */
 .galaxy-feature-card .eb-glow-1,
 .galaxy-feature-card .eb-glow-2,
 .galaxy-feature-card .eb-background-glow {
-  transition: opacity 0.4s ease, filter 0.4s ease;
+  transition: opacity 350ms ease, filter 350ms ease;
 }
 
 .galaxy-feature-card:hover .eb-glow-1 {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .galaxy-feature-card:hover .eb-glow-2 {
-  opacity: 0.85;
+  opacity: 0.9;
   filter: blur(6px);
 }
 
 .galaxy-feature-card:hover .eb-background-glow {
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
 /* Legacy compat — keep old class but neutralize its fixed width */

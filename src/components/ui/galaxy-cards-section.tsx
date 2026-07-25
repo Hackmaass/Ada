@@ -3,38 +3,50 @@
 import React from 'react';
 import Galaxy from './Galaxy';
 import ElectricBorder from './ElectricBorder';
-import { Terminal, ShieldCheck, BrainCircuit, Sparkles, Target, FileText } from 'lucide-react';
+import { GitBranch, ShieldCheck, Database, Sparkles, BarChart2, FileText } from 'lucide-react';
 
 const features = [
   {
+    icon: GitBranch,
     title: 'GitHub Intelligence Engine',
-    description: 'Deep repository analysis using AST Parsing, Tree-sitter, Commit Graph Analysis, and Static Analysis to understand real engineering contributions.',
-    icon: Terminal,
+    description:
+      'Analyze repositories using Tree-sitter, AST Parsing, Static Analysis, and Commit Graph Analysis to understand real engineering contributions beyond commits and stars.',
+    badge: 'Repository Intelligence',
   },
   {
-    title: 'AI Technical Due Diligence',
-    description: 'Verify resume claims against GitHub evidence and generate Engineering Quality, Authenticity, and Evidence Confidence Scores.',
     icon: ShieldCheck,
+    title: 'AI Skill Verification',
+    description:
+      'Cross-verify resume claims against GitHub repositories, architecture, and technical implementations to generate Evidence Confidence Scores that remove hiring guesswork.',
+    badge: 'Evidence Verification',
   },
   {
-    title: 'Repository Intelligence',
-    description: 'Analyze architecture, code quality, project complexity, documentation, and engineering practices using RAG-powered repository understanding.',
-    icon: BrainCircuit,
+    icon: Database,
+    title: 'Hybrid RAG Intelligence',
+    description:
+      'Build semantic embeddings of repositories using Hybrid RAG and GraphRAG to retrieve the most relevant engineering evidence for every candidate evaluation.',
+    badge: 'AI Knowledge Layer',
   },
   {
-    title: 'AI Hiring Copilot',
-    description: 'Recruiters describe the ideal engineer in natural language and Ada instantly returns the best evidence-backed candidates.',
     icon: Sparkles,
+    title: 'AI Hiring Copilot',
+    description:
+      'Recruiters simply describe the engineer they need in natural language and Ada intelligently discovers the best evidence-backed candidates from your entire talent pool.',
+    badge: 'Natural Language Search',
   },
   {
-    title: 'Job-Aware Candidate Ranking',
-    description: 'Candidates are ranked specifically for each job using semantic matching, technical evidence, and engineering relevance — not keyword matching.',
-    icon: Target,
+    icon: BarChart2,
+    title: 'Job-Aware Ranking',
+    description:
+      'Rank candidates using Engineering Quality, Project Complexity, Semantic Similarity, and Job Relevance instead of brittle ATS keyword matching that misses great engineers.',
+    badge: 'Smart Ranking',
   },
   {
-    title: 'Explainable AI Reports',
-    description: 'Every hiring recommendation includes transparent reasoning, technical evidence, strengths, weaknesses, and interview suggestions.',
     icon: FileText,
+    title: 'Explainable AI Reports',
+    description:
+      'Generate transparent hiring reports containing strengths, weaknesses, technical evidence, job fit rationale, and AI-generated interview questions tailored per candidate.',
+    badge: 'Explainable AI',
   },
 ];
 
@@ -67,8 +79,8 @@ export const GalaxyCardsSection = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-28 md:py-40">
-        {/* Section Header */}
-        <div className="text-center mb-20 md:mb-28">
+        {/* Section Header — DO NOT MODIFY */}
+        <div className="text-center mb-16 md:mb-20" style={{ marginBottom: '64px' }}>
           <span
             className="inline-block text-xs font-semibold tracking-[0.3em] uppercase mb-5"
             style={{ color: '#5B73AE' }}
@@ -93,15 +105,8 @@ export const GalaxyCardsSection = () => {
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(1, 1fr)',
-            gap: '24px',
-          }}
-          className="galaxy-cards-grid"
-        >
+        {/* Cards Grid — 3×2 */}
+        <div className="galaxy-cards-grid">
           {features.map((feature, idx) => {
             const IconComponent = feature.icon;
             return (
@@ -118,21 +123,22 @@ export const GalaxyCardsSection = () => {
                     {/* Icon */}
                     <div className="galaxy-card-icon">
                       <IconComponent
-                        size={22}
-                        strokeWidth={1.5}
+                        size={20}
+                        strokeWidth={1.6}
                         style={{ color: '#5B73AE' }}
                       />
                     </div>
 
                     {/* Title */}
-                    <h3 className="galaxy-card-title">
-                      {feature.title}
-                    </h3>
+                    <h3 className="galaxy-card-title">{feature.title}</h3>
 
                     {/* Description */}
-                    <p className="galaxy-card-desc">
-                      {feature.description}
-                    </p>
+                    <p className="galaxy-card-desc">{feature.description}</p>
+
+                    {/* Badge */}
+                    <div className="galaxy-card-badge">
+                      <span>{feature.badge}</span>
+                    </div>
                   </div>
                 </ElectricBorder>
               </div>
