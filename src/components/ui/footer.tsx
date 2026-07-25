@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
 
@@ -85,7 +86,13 @@ export function Footer() {
   return (
     <footer className="ada-footer">
       {/* Main Grid */}
-      <div className="ada-footer-inner">
+      <motion.div
+        className="ada-footer-inner"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="ada-footer-grid">
 
           {/* ── Brand Column ── */}
@@ -151,7 +158,7 @@ export function Footer() {
           </div>
 
         </div>
-      </div>
+      </motion.div>
 
       {/* Bottom Bar */}
       <div className="ada-footer-bottom">

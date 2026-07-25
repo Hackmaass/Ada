@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import Galaxy from './Galaxy';
 import ElectricBorder from './ElectricBorder';
 import { GitBranch, ShieldCheck, Database, Sparkles, BarChart2, FileText } from 'lucide-react';
@@ -50,6 +51,29 @@ const features = [
   },
 ];
 
+const headerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.97 },
+  visible: (idx: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      delay: idx * 0.1,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
 export const GalaxyCardsSection = () => {
   return (
     <section
@@ -87,8 +111,15 @@ export const GalaxyCardsSection = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-28 md:py-40">
-        {/* Section Header — DO NOT MODIFY */}
-        <div className="text-center mb-16 md:mb-20" style={{ marginBottom: '64px' }}>
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-16 md:mb-20"
+          style={{ marginBottom: '64px' }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
           <span
             className="inline-block text-xs font-semibold tracking-[0.3em] uppercase mb-5"
             style={{ color: '#5B73AE' }}
@@ -97,7 +128,7 @@ export const GalaxyCardsSection = () => {
           </span>
           <h2
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-7"
-            style={{ fontFamily: "'Inter', 'SF Pro Display', system-ui, sans-serif" }}
+            style={{ fontFamily: "var(--font-heading), 'Inter', 'SF Pro Display', system-ui, sans-serif" }}
           >
             Engineering Intelligence
             <br />
@@ -105,20 +136,28 @@ export const GalaxyCardsSection = () => {
           </h2>
           <p
             className="text-base md:text-lg leading-relaxed mx-auto max-w-2xl"
-            style={{ color: 'rgba(255,255,255,0.45)', fontFamily: "'Inter', system-ui, sans-serif" }}
+            style={{ color: 'rgba(255,255,255,0.4)', fontFamily: "var(--font-inter), 'Inter', system-ui, sans-serif", lineHeight: '1.8' }}
           >
             Ada verifies engineering talent using real technical evidence —
             transforming GitHub repositories, resumes, and projects into
             explainable hiring intelligence.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cards Grid — 3×2 */}
         <div className="galaxy-cards-grid">
           {features.map((feature, idx) => {
             const IconComponent = feature.icon;
             return (
-              <div key={idx} className="galaxy-feature-card group">
+              <motion.div
+                key={idx}
+                className="galaxy-feature-card group"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                custom={idx}
+              >
                 <ElectricBorder
                   color="#5B73AE"
                   speed={0.4}
@@ -149,7 +188,7 @@ export const GalaxyCardsSection = () => {
                     </div>
                   </div>
                 </ElectricBorder>
-              </div>
+              </motion.div>
             );
           })}
         </div>

@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# TalentGraph AI
 
-First, run the development server:
+### Hire the engineer, not the resume.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+An evidence-driven talent intelligence platform powered by **ADA** — the Adaptive Decision Assistant.
+
+[Documentation](./docs/) · [Roadmap](./docs/roadmap.md) · [Contributing](./CONTRIBUTING.md)
+
+</div>
+
+---
+
+## What is TalentGraph AI?
+
+TalentGraph AI replaces resume-based hiring with **evidence-driven hiring**.
+
+Instead of scanning resumes for keywords, TalentGraph AI:
+
+1. **Collects evidence** from GitHub, projects, interviews, certifications, and more
+2. **Builds a Professional Digital Twin** — a living model of every candidate's capabilities
+3. **Powers ADA** — an AI intelligence layer that reasons over evidence to provide explainable hiring recommendations
+
+Every recommendation is traceable. Every score is explainable. No black boxes.
+
+---
+
+## Meet ADA
+
+**ADA** (Adaptive Decision Assistant) is the intelligence layer of the platform.
+
+ADA is not a chatbot. ADA is a multi-agent AI system that:
+
+- Builds and maintains Professional Digital Twins
+- Reasons over structured evidence
+- Provides explainable hiring recommendations
+- Guides candidates through career development
+- Helps recruiters discover talent through natural language
+
+```
+Evidence → Knowledge Graph → Professional Digital Twin → ADA → Explainable Intelligence
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## For Candidates
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Professional Digital Twin** — a living model of your capabilities
+- **AI Career Coach** — personalized skill gap analysis and growth recommendations
+- **Portfolio Generator** — auto-generated from your verified work
+- **Interview Prep** — AI-powered practice tailored to your profile
 
-## Learn More
+## For Recruiters
 
-To learn more about Next.js, take a look at the following resources:
+- **AI Hiring Copilot** — describe the engineer you need in plain English
+- **Explainable Reports** — evidence-backed candidate evaluations
+- **Candidate Comparison** — side-by-side analysis with rationale
+- **Natural Language Search** — find talent by describing what you need
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+| Layer | Technologies |
+|-------|-------------|
+| **Frontend** | Next.js · TypeScript · Tailwind CSS · shadcn/ui · Framer Motion |
+| **Backend** | FastAPI · LangGraph · Pydantic |
+| **AI** | Ollama · Qwen · DeepSeek · Whisper · PaddleOCR |
+| **Databases** | PostgreSQL · Neo4j · Qdrant · Redis |
+| **Deployment** | Docker Compose |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All AI models run **locally** via Ollama. No data leaves your environment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 20+
+- Python 3.11+
+- Docker & Docker Compose
+
+### Setup
+
+```bash
+# Clone
+git clone https://github.com/Hackmaass/Ada.git
+cd Ada
+
+# Frontend
+npm install
+npm run dev
+
+# Infrastructure
+docker compose up -d postgres neo4j qdrant redis ollama
+
+# Backend
+cd ada-backend
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
+
+See the full [Development Guide](./docs/development-guide.md) for detailed setup instructions.
+
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Vision](./docs/vision.md) | Project vision, philosophy, and design principles |
+| [Architecture](./docs/architecture.md) | System architecture with diagrams |
+| [ADA](./docs/ada.md) | Adaptive Decision Assistant — agent system design |
+| [Digital Twin](./docs/digital-twin.md) | Professional Digital Twin specification |
+| [Evidence Engine](./docs/evidence-engine.md) | Evidence collection and processing pipeline |
+| [Knowledge Graph](./docs/knowledge-graph.md) | Neo4j schema and GraphRAG integration |
+| [Features](./docs/features.md) | Complete feature catalog |
+| [Roadmap](./docs/roadmap.md) | Development phases and milestones |
+| [Tech Stack](./docs/tech-stack.md) | Technology choices and rationale |
+| [API Design](./docs/api-design.md) | REST API specification |
+| [Development Guide](./docs/development-guide.md) | Setup, coding standards, and workflows |
+| [Folder Structure](./docs/folder-structure.md) | Project organization |
+
+---
+
+## Contributing
+
+We welcome contributions. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+---
+
+## License
+
+MIT — see [LICENSE](./LICENSE) for details.
+
+---
+
+<div align="center">
+
+**Built with evidence. Powered by ADA.**
+
+</div>

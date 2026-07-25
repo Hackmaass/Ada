@@ -118,7 +118,7 @@ export function Navbar() {
         {/* Action Button */}
         <Link
           href="/dashboard"
-          className="hidden md:block px-5 py-2 text-gray-900 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/20"
+          className="hidden md:block px-5 py-2 text-gray-900 text-sm font-semibold rounded-full transition-all duration-200 hover:opacity-90 hover:scale-105 active:scale-95 shadow-lg shadow-purple-500/20"
           style={{ backgroundColor: "#e2a9f1" }}
         >
           Launch Dashboard

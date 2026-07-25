@@ -5,12 +5,37 @@ import { motion } from 'framer-motion';
 import ShapeGrid from './ShapeGrid';
 import Galaxy from './Galaxy';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export const BrandEndingSection = () => {
   return (
     <section className="relative w-full bg-black min-h-screen flex flex-col items-center justify-center py-32 overflow-hidden">
       {/* Subtle background gradient to match the theme without introducing new colors */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#5B73AE]/5 rounded-full blur-[120px]" />
+      </div>
+
+      {/* Ambient pulsing glow behind CTA */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] pointer-events-none z-0">
+        <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(91,115,174,0.08),transparent_70%)] brand-ending-pulse" />
       </div>
 
       {/* Galaxy Background for visual continuity from Section 4 */}
@@ -49,36 +74,48 @@ export const BrandEndingSection = () => {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-[2]" />
 
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto"
       >
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6">
-          Ada — TalentGraph AI
-        </h2>
+        <motion.h2
+          variants={childVariants}
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6"
+          style={{ fontFamily: "var(--font-heading), 'Inter', system-ui, sans-serif" }}
+        >
+          Ada — <span className="brand-ending-gradient-text">TalentGraph AI</span>
+        </motion.h2>
         
-        <p className="text-xl md:text-2xl text-gray-400 font-medium mb-12 max-w-2xl">
+        <motion.p
+          variants={childVariants}
+          className="text-lg md:text-xl mb-12 max-w-2xl font-light"
+          style={{ color: 'rgba(255, 255, 255, 0.45)', lineHeight: '1.8' }}
+        >
           Building the future of evidence-based engineering hiring.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+        <motion.div
+          variants={childVariants}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+        >
           {/* Primary Button */}
-          <button className="group relative px-8 py-4 rounded-full bg-white text-black font-semibold text-lg overflow-hidden transition-transform hover:scale-105 active:scale-95">
+          <button className="group relative px-8 py-4 rounded-full bg-white text-black font-semibold text-lg overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]">
             <div className="absolute inset-0 bg-[#5B73AE]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="relative z-10">Join Us</span>
-            <div className="absolute -inset-1 bg-[#5B73AE] blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-full" />
+            <div className="absolute -inset-1 bg-white/20 blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full" />
           </button>
 
           {/* Secondary Button */}
-          <button className="group relative px-8 py-4 rounded-full bg-transparent text-white font-semibold text-lg overflow-hidden transition-transform hover:scale-105 active:scale-95 border border-[#5B73AE]/30 hover:border-[#5B73AE]">
+          <button className="group relative px-8 py-4 rounded-full bg-transparent text-white font-semibold text-lg overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 border border-[#5B73AE]/30 hover:border-[#5B73AE]">
             <div className="absolute inset-0 bg-[#5B73AE]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="relative z-10">Know More</span>
-            <div className="absolute inset-0 rounded-full shadow-[0_0_20px_rgba(91,115,174,0.0)] group-hover:shadow-[0_0_20px_rgba(91,115,174,0.4)] transition-shadow duration-500" />
+            <div className="absolute inset-0 rounded-full shadow-[0_0_20px_rgba(91,115,174,0.0)] group-hover:shadow-[0_0_30px_rgba(91,115,174,0.4)] transition-shadow duration-500" />
           </button>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );
 };
+
