@@ -17,7 +17,7 @@ export const Component = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const subtitleRef = useRef<HTMLDivElement | null>(null);
   const scrollProgressRef = useRef<HTMLDivElement | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
+
 
   const smoothCameraPos = useRef({ x: 0, y: 30, z: 100 });
   const cameraVelocity = useRef({ x: 0, y: 0, z: 0 });
@@ -442,21 +442,13 @@ export const Component = () => {
     if (!isReady) return;
     
     // Set initial states to prevent flash
-    gsap.set([menuRef.current, titleRef.current, subtitleRef.current, scrollProgressRef.current], {
+    gsap.set([titleRef.current, subtitleRef.current, scrollProgressRef.current], {
       visibility: 'visible'
     });
 
     const tl = gsap.timeline();
 
-    // Animate menu
-    if (menuRef.current) {
-      tl.from(menuRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
-    }
+
 
     // Animate title with split text
     if (titleRef.current) {
@@ -571,15 +563,6 @@ export const Component = () => {
     <div ref={containerRef} className="hero-container cosmos-style">
       <canvas ref={canvasRef} className="hero-canvas" />
       
-      {/* Side menu */}
-      <div ref={menuRef} className="side-menu" style={{ visibility: 'hidden' }}>
-        <div className="menu-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div className="vertical-text">TALENT</div>
-      </div>
 
       {/* Main content */}
       <div className="hero-content cosmos-content">

@@ -146,40 +146,7 @@
   pointer-events: none;
 }
 
-.side-menu {
-  position: fixed;
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
 
-.menu-icon {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  cursor: pointer;
-}
-
-.menu-icon span {
-  width: 30px;
-  height: 2px;
-  background: white;
-  transition: all 0.3s ease;
-}
-
-.vertical-text {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  letter-spacing: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.5);
-}
 
 .content-section, .hero-content {
   position: relative;
