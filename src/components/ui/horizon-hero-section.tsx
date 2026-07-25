@@ -17,7 +17,7 @@ export const Component = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const subtitleRef = useRef<HTMLDivElement | null>(null);
   const scrollProgressRef = useRef<HTMLDivElement | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
+
 
   const smoothCameraPos = useRef({ x: 0, y: 30, z: 100 });
   const cameraVelocity = useRef({ x: 0, y: 0, z: 0 });
@@ -442,21 +442,13 @@ export const Component = () => {
     if (!isReady) return;
     
     // Set initial states to prevent flash
-    gsap.set([menuRef.current, titleRef.current, subtitleRef.current, scrollProgressRef.current], {
+    gsap.set([titleRef.current, subtitleRef.current, scrollProgressRef.current], {
       visibility: 'visible'
     });
 
     const tl = gsap.timeline();
 
-    // Animate menu
-    if (menuRef.current) {
-      tl.from(menuRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
-    }
+
 
     // Animate title with split text
     if (titleRef.current) {
@@ -502,13 +494,28 @@ export const Component = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const maxScroll = documentHeight - windowHeight;
+      
+      // Calculate maxScroll using only the height of the first 3 sections (3 * windowHeight)
+      // to keep their scroll progress and animations exactly as they originally were.
+      const maxScroll = windowHeight * 2;
       const progress = Math.min(scrollY / maxScroll, 1);
       
       setScrollProgress(progress);
-      const newSection = Math.floor(progress * totalSections);
+      const newSection = Math.min(totalSections, Math.floor(progress * totalSections));
       setCurrentSection(newSection);
+
+      // Fade out the fixed Three.js canvas and scroll progress indicator when scrolling past the hero sections
+      const fadeProgress = Math.max(0, Math.min(1, (scrollY - maxScroll) / windowHeight));
+      if (canvasRef.current) {
+        const opacity = 1 - fadeProgress;
+        canvasRef.current.style.opacity = opacity.toString();
+        canvasRef.current.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+      }
+      if (scrollProgressRef.current) {
+        const opacity = 1 - fadeProgress;
+        scrollProgressRef.current.style.opacity = opacity.toString();
+        scrollProgressRef.current.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+      }
 
       const { current: refs } = threeRefs;
       
@@ -571,15 +578,6 @@ export const Component = () => {
     <div ref={containerRef} className="hero-container cosmos-style">
       <canvas ref={canvasRef} className="hero-canvas" />
       
-      {/* Side menu */}
-      <div ref={menuRef} className="side-menu" style={{ visibility: 'hidden' }}>
-        <div className="menu-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div className="vertical-text">TALENT</div>
-      </div>
 
       {/* Main content */}
       <div className="hero-content cosmos-content">

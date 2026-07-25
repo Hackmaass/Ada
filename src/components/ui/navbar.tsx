@@ -1,7 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Menu, ArrowUpRight } from "lucide-react";
 
+const features = [
+  { name: "GitHub Intelligence Engine", slug: "github-intelligence" },
+  { name: "AI Skill Verification",      slug: "ai-skill-verification" },
+  { name: "Hybrid RAG Intelligence",    slug: "hybrid-rag" },
+  { name: "AI Hiring Copilot",          slug: "ai-hiring-copilot" },
+  { name: "Job-Aware Candidate Ranking",slug: "job-aware-ranking" },
+  { name: "Explainable AI Reports",     slug: "explainable-ai" },
+];
+
 export function Navbar() {
+  const [hoveredFeature, setHoveredFeature] = useState(features[0].name);
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -32,20 +45,21 @@ export function Navbar() {
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
                 <div className="relative w-[480px] bg-[#161616] border border-white/[0.08] rounded-3xl p-3 shadow-2xl flex gap-3">
                   <div className="flex-1 flex flex-col gap-1">
-                    {[1, 2, 3, 4, 5].map((num) => (
+                    {features.map((feature) => (
                       <Link
-                        key={num}
-                        href={`#product-${num}`}
+                        key={feature.slug}
+                        href={`#${feature.slug}`}
                         className="group/link flex items-center justify-between px-4 py-3 rounded-2xl hover:bg-[#1e1e1e] transition-colors"
+                        onMouseEnter={() => setHoveredFeature(feature.name)}
                       >
-                        <span className="text-white font-semibold text-sm">Product {num}</span>
+                        <span className="text-white font-semibold text-sm">{feature.name}</span>
                         <ArrowUpRight className="w-4 h-4 text-gray-600 group-hover/link:text-gray-300 transition-colors" />
                       </Link>
                     ))}
                   </div>
                   <div className="w-[180px] shrink-0 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 overflow-hidden relative flex items-center justify-center">
                     <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full border-[12px] border-white/20" />
-                    <span className="relative z-10 font-bold text-white/80 text-lg tracking-tight">PRODUCTS</span>
+                    <span className="relative z-10 font-bold text-white/80 text-sm tracking-tight text-center px-3 leading-snug">{hoveredFeature}</span>
                   </div>
                 </div>
               </div>
