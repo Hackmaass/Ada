@@ -74,9 +74,9 @@ export default function ShapeGrid({
           phase = row * 0.4 - t * speed * 1.5;
         }
 
-        // Gentle sine wave between 0.06 and 0.22 opacity
+        // Gentle sine wave between 0.3 and 0.8 opacity
         const wave = Math.sin(phase) * 0.5 + 0.5;
-        const alpha = 0.06 + wave * 0.16;
+        const alpha = 0.3 + wave * 0.5;
 
         ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})`;
         ctx.lineWidth = 0.75;
