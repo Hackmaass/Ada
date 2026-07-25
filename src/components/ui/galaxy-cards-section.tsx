@@ -77,12 +77,13 @@ export const GalaxyCardsSection = () => {
         />
       </div>
 
-      {/* Top transition light bleed from red Hero section */}
-      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-[#ff4444]/6 to-transparent pointer-events-none z-10" />
-
+      {/* Top transition: deep layered red light bleed simulating the nebula carrying over */}
+      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#FF4444]/10 via-[#FF4444]/3 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse_at_top,rgba(255,68,68,0.12),transparent_70%)] pointer-events-none z-10 mix-blend-screen" />
+      
       {/* Top & Bottom dark fades for canvas content blending */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-10" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-28 md:py-40">
