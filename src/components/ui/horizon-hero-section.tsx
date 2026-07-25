@@ -494,13 +494,28 @@ export const Component = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const maxScroll = documentHeight - windowHeight;
+      
+      // Calculate maxScroll using only the height of the first 3 sections (3 * windowHeight)
+      // to keep their scroll progress and animations exactly as they originally were.
+      const maxScroll = windowHeight * 2;
       const progress = Math.min(scrollY / maxScroll, 1);
       
       setScrollProgress(progress);
-      const newSection = Math.floor(progress * totalSections);
+      const newSection = Math.min(totalSections, Math.floor(progress * totalSections));
       setCurrentSection(newSection);
+
+      // Fade out the fixed Three.js canvas and scroll progress indicator when scrolling past the hero sections
+      const fadeProgress = Math.max(0, Math.min(1, (scrollY - maxScroll) / windowHeight));
+      if (canvasRef.current) {
+        const opacity = 1 - fadeProgress;
+        canvasRef.current.style.opacity = opacity.toString();
+        canvasRef.current.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+      }
+      if (scrollProgressRef.current) {
+        const opacity = 1 - fadeProgress;
+        scrollProgressRef.current.style.opacity = opacity.toString();
+        scrollProgressRef.current.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+      }
 
       const { current: refs } = threeRefs;
       
