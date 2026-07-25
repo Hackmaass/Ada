@@ -279,3 +279,194 @@
     linear-gradient(-135deg, #ffffff 25%, transparent 25%, transparent 75%, #ffffff 75%, #ffffff);
   background-size: 50px 50px;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Galaxy Cards Section — Premium Feature Grid
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Responsive Grid */
+.galaxy-cards-grid {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .galaxy-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .galaxy-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+/* Card Wrapper — ensures ElectricBorder fills the grid cell */
+.galaxy-feature-card {
+  position: relative;
+  min-height: 240px;
+}
+
+/* Force ElectricBorder to fill its parent */
+.galaxy-feature-card .electric-border,
+.galaxy-eb-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+}
+
+.galaxy-feature-card .eb-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* Card Inner Content */
+.galaxy-card-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 32px 28px;
+  box-sizing: border-box;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Card Hover */
+.galaxy-feature-card:hover .galaxy-card-inner {
+  background: rgba(11, 15, 25, 0.95);
+  border-color: rgba(91, 115, 174, 0.2);
+  transform: translateY(-6px);
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.6),
+    0 0 40px -8px rgba(91, 115, 174, 0.12);
+}
+
+/* Icon Container */
+.galaxy-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(91, 115, 174, 0.08);
+  border: 1px solid rgba(91, 115, 174, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.galaxy-feature-card:hover .galaxy-card-icon {
+  background: rgba(91, 115, 174, 0.14);
+  border-color: rgba(91, 115, 174, 0.25);
+  transform: rotate(6deg) scale(1.08);
+  box-shadow: 0 0 20px -4px rgba(91, 115, 174, 0.2);
+}
+
+/* Card Title */
+.galaxy-card-title {
+  font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+  transition: color 0.3s ease;
+}
+
+.galaxy-feature-card:hover .galaxy-card-title {
+  color: #ffffff;
+}
+
+/* Card Description */
+.galaxy-card-desc {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.65;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.galaxy-feature-card:hover .galaxy-card-desc {
+  color: rgba(255, 255, 255, 0.52);
+}
+
+/* ElectricBorder glow transitions on hover */
+.galaxy-feature-card .eb-glow-1,
+.galaxy-feature-card .eb-glow-2,
+.galaxy-feature-card .eb-background-glow {
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.galaxy-feature-card:hover .eb-glow-1 {
+  opacity: 0.85;
+}
+
+.galaxy-feature-card:hover .eb-glow-2 {
+  opacity: 0.85;
+  filter: blur(6px);
+}
+
+.galaxy-feature-card:hover .eb-background-glow {
+  opacity: 0.5;
+}
+
+/* Legacy compat — keep old class but neutralize its fixed width */
+.electric-card-container {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  background: #0B0F19 !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+
+.electric-card-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -12px rgba(91, 115, 174, 0.2), 0 10px 30px -10px rgba(0, 0, 0, 0.9);
+}
+
+.electric-card-container .eb-content {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.electric-card-inner {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.electric-card-container .eb-glow-1,
+.electric-card-container .eb-glow-2,
+.electric-card-container .eb-background-glow {
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.electric-card-container:hover .eb-glow-1 {
+  opacity: 0.9;
+}
+
+.electric-card-container:hover .eb-glow-2 {
+  opacity: 0.9;
+  filter: blur(6px);
+}
+
+.electric-card-container:hover .eb-background-glow {
+  opacity: 0.6;
+}
