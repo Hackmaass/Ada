@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import ShapeGrid from './ShapeGrid';
 
 export const BrandEndingSection = () => {
   return (
@@ -9,6 +10,19 @@ export const BrandEndingSection = () => {
       {/* Subtle background gradient to match the theme without introducing new colors */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#5B73AE]/5 rounded-full blur-[120px]" />
+      </div>
+
+      {/* ShapeGrid Background — animated diagonal grid, blends behind content */}
+      <div className="absolute inset-0 z-[1] pointer-events-none" style={{ opacity: 0.3 }}>
+        <ShapeGrid
+          speed={0.5}
+          squareSize={40}
+          direction="diagonal"
+          borderColor="#5B73AE"
+          hoverFillColor="#222222"
+          shape="square"
+          hoverTrailAmount={0}
+        />
       </div>
 
       <motion.div 
