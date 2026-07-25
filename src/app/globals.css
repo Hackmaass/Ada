@@ -487,15 +487,224 @@
   transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
-.electric-card-container:hover .eb-glow-1 {
-  opacity: 0.9;
-}
-
-.electric-card-container:hover .eb-glow-2 {
-  opacity: 0.9;
-  filter: blur(6px);
-}
-
 .electric-card-container:hover .eb-background-glow {
   opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Ada Footer Section
+   ═══════════════════════════════════════════════════════════════ */
+.ada-footer {
+  background: #0B0B0F;
+  border-top: 1px solid rgba(91, 115, 174, 0.25);
+  padding: 80px 24px 40px 24px;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.ada-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ada-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  text-align: center;
+  align-items: start;
+}
+
+@media (min-width: 640px) {
+  .ada-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ada-footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    text-align: left;
+  }
+}
+
+.ada-footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .ada-footer-brand {
+    align-items: flex-start;
+  }
+}
+
+.ada-footer-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.ada-footer-tagline {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 24px;
+}
+
+.ada-footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.ada-social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.ada-social-icon:hover {
+  color: #5B73AE;
+  background: rgba(91, 115, 174, 0.08);
+  border-color: rgba(91, 115, 174, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 0 16px rgba(91, 115, 174, 0.25);
+}
+
+.ada-footer-col-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.ada-footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .ada-footer-link-list {
+    align-items: flex-start;
+  }
+}
+
+.ada-footer-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.ada-footer-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #5B73AE;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.ada-footer-link:hover {
+  color: #5B73AE;
+}
+
+.ada-footer-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.ada-footer-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.ada-footer-contact-link:hover {
+  color: #5B73AE;
+  transform: translateX(4px);
+}
+
+@media (max-width: 1023px) {
+  .ada-footer-contact-link:hover {
+    transform: none;
+  }
+}
+
+.ada-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 64px;
+  padding-top: 32px;
+}
+
+.ada-footer-bottom-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .ada-footer-bottom-inner {
+    flex-direction: row;
+    justify-content: justify-between;
+  }
+}
+
+.ada-footer-copy {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+}
+
+.ada-footer-rights {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.25);
+  margin-left: auto;
+}
+
+@media (max-width: 767px) {
+  .ada-footer-rights {
+    margin-left: 0;
+  }
 }
