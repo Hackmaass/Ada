@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Galaxy from './Galaxy';
 import ElectricBorder from './ElectricBorder';
 import { GitBranch, ShieldCheck, Database, Sparkles, BarChart2, FileText } from 'lucide-react';
@@ -51,7 +51,7 @@ const features = [
   },
 ];
 
-const headerVariants = {
+const headerVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -60,7 +60,7 @@ const headerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
   visible: (idx: number) => ({
     opacity: 1,
