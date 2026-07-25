@@ -117,11 +117,11 @@ export function Navbar() {
 
         {/* Action Button */}
         <Link
-          href="#login"
-          className="hidden md:block px-5 py-2 text-gray-900 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity"
+          href="/dashboard"
+          className="hidden md:block px-5 py-2 text-gray-900 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/20"
           style={{ backgroundColor: "#e2a9f1" }}
         >
-          Login
+          Launch Dashboard
         </Link>
 
         {/* Mobile Menu */}
